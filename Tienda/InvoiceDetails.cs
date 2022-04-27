@@ -33,10 +33,7 @@ namespace Tienda
                     {
                         Object[] value = item.Value;
                         Subtotal += (int)value[0] * (Double)value[1];
-                        
-                        // TODO actualizar el stock de cada producto en base de datos 
-
-                    }
+                                            }
                     Taxes = Subtotal * TAX;
                     Discount = 0; // TODO coupons
                     Total = Subtotal + Taxes - Discount;
