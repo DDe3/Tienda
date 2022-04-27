@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tienda
+﻿namespace Tienda
 {
     public class ShoppingCart
     {
+        public Int16 ClientId;
         public Dictionary<Int16, Object[]> Products;
-        
 
-        public ShoppingCart() 
+
+        public ShoppingCart(Int16 id)
         {
+            this.ClientId = id;
             Products = new Dictionary<Int16, Object[]>();
         }
 
@@ -42,26 +38,6 @@ namespace Tienda
             }
         }
 
-        public void Pay(Payment payment)
-        {
-            try
-            {
-                Invoice invoice = new();
-                InvoiceDetails invoiceDetails = new(Products);
-                invoice.Number = DateTime.Now.Millisecond.ToString();
-                invoice.PurchaseDate = DateTime.Now;
-                invoice.ClientNumber = payment.client.Number;
-                invoice.TotalPrice = invoiceDetails.Total;
-                invoice.InvoiceDetails = invoiceDetails;
-                payment.Pay();
-                payment.client.AddPurchase(invoice);
 
-            } catch (Exception ex)
-            {
-                throw new PaymentException(ex.Message);
-            }
-            
-
-        } 
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Tienda.Repository;
 
 namespace Tienda
 {
@@ -10,16 +6,16 @@ namespace Tienda
     {
         public Int16? Id { set; get; }
 
-        public String? Number { set; get; }
+        public String Number { set; get; }
         public String? Name { set; get; }
         public String? LastName { set; get; }
         public DateTime? FirstPurchase { set; get; }
         public DateTime? LastPurchase { set; get; }
 
-        public List<Invoice> Purchases;
+        public List<Invoice>? Purchases;
 
-        public Client() 
-        { 
+        public Client()
+        {
             Purchases = new List<Invoice>();
         }
 
@@ -40,6 +36,11 @@ namespace Tienda
             }
             this.LastPurchase = DateTime.Now;
             this.Purchases.Add(invoice);
+        }
+
+        public Client GetClientById(Int16 id)
+        {
+            return JsonClient.GetClientById(id);
         }
     }
 }
