@@ -35,7 +35,7 @@ namespace Tienda
                         Subtotal += (int)value[0] * (Double)value[1];
                                             }
                     Taxes = Subtotal * TAX;
-                    Discount = 0; // TODO coupons
+                    Discount = 10; // TODO coupons
                     Total = Subtotal + Taxes - Discount;
 
                 } catch (Exception ex)
